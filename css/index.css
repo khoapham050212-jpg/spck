@@ -1,0 +1,479 @@
+/* =====================================================
+   4. HEADER (đầu trang, cố định khi cuộn)
+   ===================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 6vw;
+  background: rgba(246, 245, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--green);
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.menu a:hover {
+  color: var(--green);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+#welcome-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.site-header .btn.ghost {
+  color: var(--green);
+}
+
+/* =====================================================
+   5. BODY: ẢNH LỚN ĐẦU TRANG
+   ===================================================== */
+.hero {
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end; /* chữ nằm phía dưới ảnh */
+  padding: 80px 6vw 72px;
+  color: var(--shuttle);
+  background-color: var(--green);
+  /* Lớp tối dần xuống dưới để chữ dễ đọc, ảnh lấy từ biến --bg */
+  background-image:
+    linear-gradient(
+      to top,
+      rgba(8, 30, 22, 0.9) 0%,
+      rgba(8, 30, 22, 0.4) 55%,
+      rgba(8, 30, 22, 0.15) 100%
+    ),
+    var(--bg, none);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  max-width: 12ch;
+}
+
+.hero p {
+  margin: 20px 0 30px;
+  max-width: 46ch;
+  font-size: 1.1rem;
+  color: #e3efe9;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   6. BODY: CÁC PHẦN NỘI DUNG
+   ===================================================== */
+.block {
+  padding: 96px 6vw;
+}
+
+.block.alt {
+  background: #ebeadf;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.block h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.block p {
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 58ch;
+}
+
+/* Giới thiệu: chữ bên trái, ảnh bên phải */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.two-col img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 28px;
+}
+
+/* Nguồn gốc: danh sách các mốc, mỗi mốc một hàng */
+.history {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  border-top: 2px solid var(--ink);
+}
+
+.history li {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.history strong {
+  font-size: 1.15rem;
+  color: var(--green2);
+}
+
+.history span {
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+/* =====================================================
+   10. FULL-PAGE SECTIONS
+   ===================================================== */
+:root {
+  --header: 72px; /* header height; sections fill the rest of the screen */
+}
+
+html {
+  scroll-snap-type: y proximity; /* gently snaps to the next section */
+  scroll-padding-top: var(
+    --header
+  ); /* keeps the section top below the header */
+}
+
+.site-header {
+  height: var(--header);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Every part fills one screen (minus the header) */
+.hero,
+.block {
+  min-height: calc(100vh - var(--header));
+  min-height: calc(100svh - var(--header));
+  scroll-snap-align: start;
+}
+
+/* Center the content of the white / beige sections vertically */
+.block {
+  display: flex;
+  align-items: center;
+}
+
+.block .wrap {
+  width: 100%;
+}
+
+/* Keep the intro photo from becoming taller than the screen */
+.two-col img {
+  max-height: 68vh;
+}
+
+.site-footer {
+  scroll-snap-align: end;
+}
+
+/* =====================================================
+   11. HOME PAGE: FULL-SCREEN PHOTO PANELS
+   ===================================================== */
+html {
+  scroll-padding-top: 0; /* panels run under the transparent header */
+}
+
+/* ----- Transparent header on top of the photo ----- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* menu | logo | actions */
+  align-items: center;
+  padding: 26px 6vw;
+  color: #fff;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 32px;
+}
+
+.topbar nav a {
+  position: relative;
+  padding-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Short white line above the active menu item */
+.topbar nav a.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 2px;
+  background: #fff;
+}
+
+.logo-circle {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.top-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar #welcome-text {
+  font-size: 0.9rem;
+}
+
+.topbar .btn {
+  background: #fff;
+  color: var(--green);
+  border: 0;
+  padding: 9px 20px;
+}
+
+/* ----- One full-screen photo per part ----- */
+.panel {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-left: 6vw;
+  color: #fff;
+  scroll-snap-align: start;
+  background-color: var(--green);
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 45%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1) 75%),
+    var(--bg, none);
+  background-size: cover;
+  background-position: center;
+}
+
+.panel-main {
+  padding: 22vh 6vw 40px 0;
+}
+
+.panel-main h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  max-width: 11ch;
+}
+
+.panel-main p {
+  margin-top: 28px;
+  max-width: 42ch;
+  font-size: 0.95rem;
+  color: #e9f1ed;
+}
+
+/* Vertical "scroll down" hint on the left edge */
+.scroll-hint {
+  position: absolute;
+  left: 2.2vw;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); /* reads bottom to top, like the reference */
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+/* ----- Bottom row: teasers, thumbnail, white box ----- */
+.panel-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.teaser {
+  padding-bottom: 40px;
+}
+
+.teaser h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.teaser p {
+  max-width: 24ch;
+  font-size: 0.8rem;
+  color: #dbe6e0;
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 130px;
+  margin-bottom: 0;
+  border: 6px solid #fff;
+  border-bottom: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+}
+
+.thumb span {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.next-box {
+  margin-left: auto;
+  min-width: 340px;
+  display: grid;
+  gap: 4px;
+  padding: 30px 44px;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.next-box strong {
+  font-size: 1.1rem;
+}
+
+.next-box span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.next-box em {
+  justify-self: end;
+  margin-top: -22px;
+  font-style: normal;
+  font-size: 1.4rem;
+  transition: transform 0.2s;
+}
+
+.next-box:hover em {
+  transform: translateX(6px);
+}
+
+/* Header without the center logo */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Keep the teasers clear of the bottom edge */
+.panel-bottom {
+  padding-bottom: 8px;
+}
+
+/* =====================================================
+   MÀN HÌNH NHỎ (homepage parts)
+   ===================================================== */
+@media (max-width: 800px) {
+  .menu {
+    display: none; /* ẩn menu giữa cho đỡ chật */
+  }
+
+  #welcome-text {
+    display: none;
+  }
+
+  .hero {
+    min-height: 68vh;
+    padding: 60px 6vw 48px;
+  }
+
+  .block {
+    padding: 64px 6vw;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .two-col img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .history li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,186 @@
+/* =====================================================
+   8. ĐĂNG NHẬP / ĐĂNG KÝ: ẢNH NỀN, CHỮ BÊN TRÁI, THẺ BÊN PHẢI
+   ===================================================== */
+.auth {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 580px);
+  align-items: center;
+  gap: 5vw;
+  padding: 100px 6vw 48px;
+  background-color: var(--green);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 30, 22, 0.78) 0%,
+      rgba(8, 30, 22, 0.35) 60%,
+      rgba(8, 30, 22, 0.45) 100%
+    ),
+    var(--bg, none);
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-brand {
+  position: absolute;
+  top: 28px;
+  left: 6vw;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--shuttle);
+}
+
+.auth-brand span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--yellow);
+  font-size: 1.2rem;
+}
+
+.auth-intro {
+  color: var(--shuttle);
+}
+
+.auth-intro h1 {
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+
+.pill {
+  display: inline-block;
+  margin: 28px 0 22px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: rgba(8, 30, 22, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--shuttle);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.pill:hover {
+  background: var(--yellow);
+  color: var(--green);
+}
+
+.auth-intro p {
+  max-width: 38ch;
+  font-size: 0.95rem;
+  color: #e3efe9;
+}
+
+/* Thẻ trắng chứa form */
+.auth-card {
+  width: 100%;
+  max-width: 580px;
+  justify-self: end;
+  background: #fff;
+  border-radius: 28px;
+  padding: 52px 48px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+}
+
+.auth-card h2 {
+  font-size: 1.9rem;
+  margin: 0 0 8px;
+}
+
+.auth-card .sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+}
+
+.auth-card form {
+  display: grid;
+  gap: 24px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+input {
+  font: inherit;
+  font-size: 1.05rem;
+  padding: 18px 20px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  background: #f3f3f0;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+input:focus {
+  border-color: var(--green2);
+  box-shadow: 0 0 0 4px rgba(22, 90, 67, 0.15);
+  outline: none;
+  background: #fff;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.auth-card .btn {
+  width: 100%;
+  background: var(--green);
+  color: var(--shuttle);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+
+.auth-card .btn:hover {
+  background: var(--green2);
+}
+
+/* =====================================================
+   MÀN HÌNH NHỎ (auth pages)
+   ===================================================== */
+@media (max-width: 800px) {
+  .auth {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 90px 5vw 40px;
+    background-image:
+      linear-gradient(rgba(8, 30, 22, 0.6), rgba(8, 30, 22, 0.7)),
+      var(--bg, none);
+  }
+
+  .auth-card {
+    justify-self: stretch;
+    max-width: none;
+    padding: 28px 22px;
+  }
+
+  .auth-card form {
+    gap: 18px;
+  }
+
+  input {
+    padding: 14px 16px;
+  }
+}
